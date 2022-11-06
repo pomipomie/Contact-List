@@ -31,9 +31,8 @@ export const AddContact = () => {
             setNewContact(response.data);
         }).catch(
             error => console.log(error)
-        ).finally(window.confirm("Would you like to add another contact?") ? 
-            window.location.reload()
-            : <Link to="/" />);
+        )
+        //ADD MODAL;
     }
     
     return(

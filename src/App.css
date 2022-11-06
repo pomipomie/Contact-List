@@ -1,9 +1,13 @@
 .footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
   height: max-content;
   background-color: black;
   text-align: center;
   color: aliceblue;
+}
+
+.footer p {
+  margin: 0;
+  padding: .5em;
 }

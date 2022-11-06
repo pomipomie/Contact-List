@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useParams } from "react";
 import ContactListService from "../services/ListContactService";
 import { Link } from 'react-router-dom';
 
@@ -14,6 +14,17 @@ const ListContact = () => {
         )
     }, [])
     
+    function onDelete(id) {
+        ContactListService.deleteContact(id).then(response => {
+            const updatedContacts = contacts.filter(contact => contact.id !== id);
+            response.data = updatedContacts;
+            setContacts(response.data);
+        }).catch(
+            error => console.log(error)
+        ).finally(
+            window.location.reload()
+        );
+    }
 
     return (
         <div className="container">
@@ -25,10 +36,13 @@ const ListContact = () => {
             </div>
             <table className="table table-bordered table-striped">
                 <thead>
-                    <th>Contact Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
+                    <tr>
+                        <th>Contact Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                     { contacts.map(contact => {
@@ -37,6 +51,12 @@ const ListContact = () => {
                                     <td>{contact.firstName}</td>
                                     <td>{contact.lastName}</td>
                                     <td>{contact.email}</td>
+                                    <td>
+                                        <Link to={`/contacts/${contact.id}`}>
+                                            <button className="btn btn-info">Edit</button>
+                                        </Link>
+                                        <button className="btn btn-danger" onClick={id => {onDelete(contact.id)}}>Delete</button>
+                                    </td>
                                 </tr>
                     })}
                 </tbody>

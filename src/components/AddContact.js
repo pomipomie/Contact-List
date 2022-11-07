@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Form } from "./Form";
 import ContactListService from "../services/ListContactService";
-import { Link } from "react-router-dom";
+import { Modal } from "./Modal";
+import { useNavigate } from "react-router-dom";
 
 export const AddContact = () => {
     const [newContact, setNewContact] = useState({});
+    const [formKey, setFormKey] = useState(0);
+    const [show, setShow] = useState({display: "none"});
+    const navigate = useNavigate();
 
     function onChangeFirstName(e) {
         const updatedContact = {...newContact};
@@ -31,16 +35,29 @@ export const AddContact = () => {
             setNewContact(response.data);
         }).catch(
             error => console.log(error)
+        ).finally(
+            ()=> setShow({display: "block"})
         )
-        //ADD MODAL;
     }
     
     return(
-        <Form title="Add new contact" 
-            onChangeFirstName={onChangeFirstName}
-            onChangeLastName={onChangeLastName}
-            onChangeEmail={onChangeEmail}
-            onSave={onSave}
-        />
+        <div className="container">
+            <Modal 
+                show={show} 
+                modalText="Would you like to add another contact?" 
+                dualButton={true} 
+                buttonText="Yes" 
+                onClick={()=> {setShow({display: "none"}); setFormKey(formKey + 1)}}
+                onClose={()=> {setShow({display: "none"}); navigate("/")}}
+            />
+            <Form 
+                key={formKey}
+                title="Add new contact" 
+                onChangeFirstName={onChangeFirstName}
+                onChangeLastName={onChangeLastName}
+                onChangeEmail={onChangeEmail}
+                onSave={onSave}
+            />
+        </div>
     )
 }

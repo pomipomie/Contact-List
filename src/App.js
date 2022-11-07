@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -9,7 +10,7 @@ import { UpdateContact } from './components/UpdateContact';
 
 function App() {
   return (
-    <div>
+    <div className='main'>
       <Header/>
       <BrowserRouter>
         <Routes>

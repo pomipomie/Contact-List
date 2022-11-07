@@ -21,30 +21,25 @@ const ListContact = () => {
             setContacts(response.data);
         }).catch(
             error => console.log(error)
-        ).finally(
-            window.location.reload()
-        );
+        )
     }
 
     return (
         <div className="container">
-            <h2 className="text-center">Contact List</h2>
-            <div className="row">
                 <Link to='/contacts/new'>
-                    <button className="btn btn-primary">Add Contact</button>
+                    <button className="btn btn-primary btn-add">Add Contact</button>
                 </Link>
-            </div>
-            <table className="table table-bordered table-striped">
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Contact Id</th>
+                        <th>Id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="table-group-divider">
                     { contacts.map(contact => {
                         return <tr key={contact.id}>
                                     <td>{contact.id}</td>
@@ -53,7 +48,7 @@ const ListContact = () => {
                                     <td>{contact.email}</td>
                                     <td>
                                         <Link to={`/contacts/${contact.id}`}>
-                                            <button className="btn btn-info">Edit</button>
+                                            <button className="btn btn-dark">Edit</button>
                                         </Link>
                                         <button className="btn btn-danger" onClick={id => {onDelete(contact.id)}}>Delete</button>
                                     </td>

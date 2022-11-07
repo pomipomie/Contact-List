@@ -1,13 +1,90 @@
+:root {
+  --darkpurple: #310b2c;
+  --penny: #BA6E6E;
+  --darkpenny: #7e2929;
+  --ghostwhite: #F8F4F9;
+  --blue: #24386A;
+  --darkblue: #111c3a;
+  --tyrian: #7a1440;
+  --darktyrian: #470d26;
+}
+
+body {
+  background-color: var(--ghostwhite);
+}
+
+.navbar {
+  background-color: var(--darkpurple);
+  justify-content: center;
+}
+
+.container {
+  margin: 5vmin auto;
+  overflow: auto;
+}
+
+.table {
+  vertical-align: middle;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.24);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--darkpenny);
+  --bs-btn-border-color: var(--darkpenny);
+  --bs-btn-hover-bg: var(--penny);
+  --bs-btn-hover-border-color: var(--penny);
+}
+
+.btn-dark {
+  --bs-btn-bg: var(--darkblue);
+  --bs-btn-border-color: var(--darkblue);
+  --bs-btn-hover-bg: var(--blue);
+  --bs-btn-hover-border-color: var(--blue);
+  margin-right: .3em;
+}
+
+.btn-danger {
+  --bs-btn-bg: var(--darktyrian);
+  --bs-btn-border-color: var(--darktyrian);
+  --bs-btn-hover-bg: var(--tyrian);
+  --bs-btn-hover-border-color: var(--tyrian);
+}
+
+.btn-add {
+  margin: 1em auto;
+}
+
+.card {
+  padding: 2em;
+}
+
+.form-group label {
+  padding: .25em;
+}
+
+.form-group input {
+  margin-bottom: .5em;
+}
+
 .footer {
   bottom: 0;
   width: 100%;
   height: max-content;
-  background-color: black;
+  background-color: var(--darkpurple);
   text-align: center;
-  color: aliceblue;
 }
 
 .footer p {
   margin: 0;
   padding: .5em;
+}
+
+@media (max-width: 575.98px) { 
+  :root {
+    font-size: 14px;
+  }
+
+  .container {
+    --bs-gutter-x: 0;
+  }
 }

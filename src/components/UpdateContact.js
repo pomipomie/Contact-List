@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Form } from "./Form";
 import ContactListService from "../services/ListContactService";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Modal } from "./Modal";
 
 export const UpdateContact = () => {
     const [myContact, setMyContact] = useState({});
+    const [show, setShow] = useState({display: "none"});
+    const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
@@ -40,16 +43,26 @@ export const UpdateContact = () => {
             setMyContact(response.data);
         }).catch(
             error => console.log(error)
+        ).then(
+            ()=> setShow({display: "block"})
         );
-        //ADD MODAL;
     }
     
     return(
-        <Form title="Update contact" 
-            onChangeFirstName={onChangeFirstName}
-            onChangeLastName={onChangeLastName}
-            onChangeEmail={onChangeEmail}
-            onSave={onSave}
-        />
+        <div className="container">
+            <Modal 
+                show={show} 
+                modalText="Contact updated successfully" 
+                dualButton={false} 
+                buttonText="Ok" 
+                onClick={()=> {setShow({display: "none"}); navigate("/")}}
+            />
+            <Form title="Update contact" 
+                onChangeFirstName={onChangeFirstName}
+                onChangeLastName={onChangeLastName}
+                onChangeEmail={onChangeEmail}
+                onSave={onSave}
+            />
+        </div>
     )
 }

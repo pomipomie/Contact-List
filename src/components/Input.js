@@ -1,4 +1,4 @@
-export const Input = ({name, label, value, onChange, text}) => {
+export const Input = ({name, label, value, onChange}) => {
 
     return(
         <>

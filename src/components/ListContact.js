@@ -32,11 +32,11 @@ const ListContact = () => {
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
+                        <th>Id <i class="bi bi-person-badge"></i></th>
+                        <th>First Name <i class="bi bi-person-circle"></i></th>
+                        <th>Last Name <i class="bi bi-people-fill"></i></th>
+                        <th>Email <i class="bi bi-envelope"></i></th>
+                        <th>Actions <i class="bi bi-pencil-square"></i></th>
                     </tr>
                 </thead>
                 <tbody className="table-group-divider">
